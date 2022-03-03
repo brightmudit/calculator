@@ -35,21 +35,42 @@ function displayValue(btnValue) {
     currentValue = display.textContent;
 }
 function displayOperator(operator) {
-    display.textContent += operator;
-    // firstValue = Number(currentValue);
-    // currentValue = 0;
-    currentOperator = operator;
+    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') ) {
+        let expression = currentValue.split(`${currentOperator}`);
+        if (expression[1] !== '') {
+            expression = expression.map(item => Number(item));
+            display.textContent = operate(currentOperator, expression[0], expression[1]) + operator;
+            currentValue = display.textContent;
+            currentOperator = operator;
+        } else {
+            display.textContent = expression[0] + operator;
+            currentValue = display.textContent;
+            currentOperator = operator;
+        }
+    } else {
+        display.textContent += operator;
+        currentValue = display.textContent;
+        currentOperator = operator;
+    }
 }
 function calculate() {
     let expression = currentValue.split(`${currentOperator}`);
-    expression = expression.map(item => Number(item));
-    // secondValue = Number(currentValue);
-    display.textContent =  operate(currentOperator, expression[0], expression[1]);
+    if (expression.length > 1) {
+        if (expression[1] !== '') {
+            expression = expression.map(item => Number(item));
+            display.textContent =  operate(currentOperator, expression[0], expression[1]);
+            currentValue = display.textContent;
+        } else {
+            display.textContent = expression[0] + currentOperator;
+            currentValue = display.textContent;
+        }
+    } else {
+        display.textContent = expression[0];
+        currentValue = display.textContent;
+    }
 }
 // Global Variables
-let currentValue = 0;
-// let firstValue = 0;
-// let secondValue = 0;
+let currentValue;
 let currentOperator;
 const display = document.querySelector('.display');
 const numberBtn = document.querySelectorAll('.number');
