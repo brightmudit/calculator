@@ -69,6 +69,23 @@ function calculate() {
         currentValue = display.textContent;
     }
 }
+function clear() {
+    let expression = currentValue.split('');
+    expression.pop();
+    display.textContent =  arrayToString(expression);
+    currentValue = display.textContent;
+}
+function arrayToString(arr) {
+    let myString = '';
+    for (let item in arr) {
+        myString += arr[item];
+    }
+    return myString;
+}
+function clearAll() {
+    display.textContent = '';
+    currentValue = display.textContent;
+}
 // Global Variables
 let currentValue;
 let currentOperator;
@@ -76,8 +93,12 @@ const display = document.querySelector('.display');
 const numberBtn = document.querySelectorAll('.number');
 const operatorBtn = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('#equals');
+const clearSingleBtn = document.querySelector('#clear-single');
+const clearAllBtn = document.querySelector('#clear-all');
 
 numberBtn.forEach(btn => btn.addEventListener('click', () => (displayValue(btn.textContent))));
 operatorBtn.forEach(btn => btn.addEventListener('click', () => (displayOperator(btn.textContent))));
 equalsBtn.addEventListener('click', calculate);
+clearSingleBtn.addEventListener('click', clear);
+clearAllBtn.addEventListener('click', clearAll);
 
