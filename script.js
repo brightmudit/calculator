@@ -10,6 +10,9 @@ function mul(x, y) {
 function div(x, y) {
     return x / y;
 }
+function percent(x, y) {
+    return x * (y / 100);
+}
 function operate(operator, operand1, operand2) {
     let result = 0;
     switch (operator) {
@@ -25,6 +28,8 @@ function operate(operator, operand1, operand2) {
         case '/':
             result = div(operand1, operand2);
             break;
+        case '%':
+            result = percent(operand1, operand2);
         default:
             console.log('No operator found');
     }
@@ -35,7 +40,7 @@ function displayValue(btnValue) {
     currentValue = display.textContent;
 }
 function displayOperator(operator) {
-    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') ) {
+    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%')) {
         let expression = currentValue.split(`${currentOperator}`);
         if (expression[1] !== '') {
             expression = expression.map(item => Number(item));
