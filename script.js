@@ -36,6 +36,10 @@ function operate(operator, operand1, operand2) {
     return result;
 }
 function displayValue(btnValue) {
+    if (checkValueLength(display.textContent)) {
+        alert('Value length limit has been reached');
+        return;
+    }
     display.textContent += btnValue;
     currentValue = display.textContent;
 }
@@ -90,6 +94,10 @@ function arrayToString(arr) {
 function clearAll() {
     display.textContent = '';
     currentValue = display.textContent;
+}
+function checkValueLength(value) {
+    if (value.length >= 18) return true;
+    return false;
 }
 // Global Variables
 let currentValue;
