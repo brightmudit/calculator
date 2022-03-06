@@ -10,16 +10,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 .container {
     display: flex;
     flex-direction: column;
-    width: 360px;
-    border: 1px solid black;
-    height: 500px;
+    width: 380px;
+    height: 550px;
+    border: 10px ridge #FFAFCC;
+    border-radius: 21px;
+    overflow: hidden;
+    background: #BDE0FE;
 }
 .name {
-    border: 1px solid green;
     font-size: 37px;
     font-weight: bold;
     display: flex;
@@ -28,22 +31,29 @@ body {
     justify-content: center;
 }
 .display {
-    border: 1px solid red;
+    border: 3px solid #56a7f3;
     font-size: 30px;
     display: flex;
     align-items: center;
-    border-radius: 17px 17px 0px 0px;
+    border-radius: 25px 25px 0px 0px;
     padding: 3px 10px;
     justify-content: end;
+    background: #FFAFCC;
     height: 13%;
 }
 .row {
     display: flex;
-    border: 1px solid blue;
     height: 16%;
 }
 .row button {
     font-size: 30px;
     width: 20%;
+    background: #FFAFCC;
     flex: auto;
+    border: 3px solid #56a7f3;
+    border-radius: 25px;
+    margin: 6px;
+}
+#equals {
+    flex: 40% 1 1;
 }
