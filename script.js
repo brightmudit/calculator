@@ -114,4 +114,3 @@ operatorBtn.forEach(btn => btn.addEventListener('click', () => (displayOperator(
 equalsBtn.addEventListener('click', calculate);
 clearSingleBtn.addEventListener('click', clear);
 clearAllBtn.addEventListener('click', clearAll);
-
