@@ -42,6 +42,14 @@ function displayValue(btnValue) {
     }
     display.textContent += btnValue;
     currentValue = display.textContent;
+    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%')) {
+        let expression = currentValue.split(`${currentOperator}`);
+        operand2 = expression[1];
+        
+    } else {
+        let expression = currentValue.split(`${currentOperator}`);
+        operand1 = expression[0];
+    }
 }
 function displayOperator(operator) {
     if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%')) {
@@ -99,18 +107,35 @@ function checkValueLength(value) {
     if (value.length >= 18) return true;
     return false;
 }
+function displayDecimal(value) {
+    if (!operand1.includes('.')) {
+        display.textContent += value;
+        currentValue = display.textContent;
+        operand1 = currentValue;
+    }
+    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%'))
+        if (!operand2.includes('.')) {
+            display.textContent += value;
+            currentValue = display.textContent;
+            operand2 = currentValue;
+        }
+}
 // Global Variables
-let currentValue;
+let currentValue = '0';
 let currentOperator;
+let operand1 = '0';
+let operand2 = '0';
 const display = document.querySelector('.display');
 const numberBtn = document.querySelectorAll('.number');
 const operatorBtn = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('#equals');
+const decimalBtn = document.querySelector('#decimal');
 const clearSingleBtn = document.querySelector('#clear-single');
 const clearAllBtn = document.querySelector('#clear-all');
 
 numberBtn.forEach(btn => btn.addEventListener('click', () => (displayValue(btn.textContent))));
 operatorBtn.forEach(btn => btn.addEventListener('click', () => (displayOperator(btn.textContent))));
 equalsBtn.addEventListener('click', calculate);
+decimalBtn.addEventListener('click', () => (displayDecimal(decimalBtn.textContent)));
 clearSingleBtn.addEventListener('click', clear);
 clearAllBtn.addEventListener('click', clearAll);
