@@ -45,7 +45,7 @@ function displayValue(btnValue) {
     if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%')) {
         let expression = currentValue.split(`${currentOperator}`);
         operand2 = expression[1];
-        
+
     } else {
         let expression = currentValue.split(`${currentOperator}`);
         operand1 = expression[0];
@@ -75,7 +75,7 @@ function calculate() {
     if (expression.length > 1) {
         if (expression[1] !== '') {
             expression = expression.map(item => Number(item));
-            display.textContent =  operate(currentOperator, expression[0], expression[1]);
+            display.textContent = operate(currentOperator, expression[0], expression[1]);
             currentValue = display.textContent;
         } else {
             display.textContent = expression[0] + currentOperator;
@@ -89,7 +89,7 @@ function calculate() {
 function clear() {
     let expression = currentValue.split('');
     expression.pop();
-    display.textContent =  arrayToString(expression);
+    display.textContent = arrayToString(expression);
     currentValue = display.textContent;
 }
 function arrayToString(arr) {
@@ -108,17 +108,19 @@ function checkValueLength(value) {
     return false;
 }
 function displayDecimal(value) {
-    if (!operand1.includes('.')) {
-        display.textContent += value;
-        currentValue = display.textContent;
-        operand1 = currentValue;
-    }
-    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%'))
+    if (currentValue.includes('+') || currentValue.includes('-') || currentValue.includes('x') || currentValue.includes('/') || currentValue.includes('%')) {
         if (!operand2.includes('.')) {
             display.textContent += value;
             currentValue = display.textContent;
             operand2 = currentValue;
         }
+    } else {
+        if (!operand1.includes('.')) {
+            display.textContent += value;
+            currentValue = display.textContent;
+            operand1 = currentValue;
+        }
+    }
 }
 // Global Variables
 let currentValue = '0';
